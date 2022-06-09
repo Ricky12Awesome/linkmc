@@ -1,5 +1,5 @@
 {
-  "name": "mc-linker",
+  "name": "linkmc",
   "private": true,
   "version": "0.0.0",
   "type": "module",
