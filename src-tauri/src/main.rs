@@ -3,27 +3,20 @@
   windows_subsystem = "windows"
 )]
 
-use std::cell::RefCell;
+use std::sync::RwLock;
 
-struct Counter(RefCell<i32>);
-
-unsafe impl Send for Counter {}
-unsafe impl Sync for Counter {}
+struct Counter(RwLock<i32>);
 
 #[tauri::command]
-fn counter(state: tauri::State<Counter>) {
-  *state.0.borrow_mut() += 1;
-}
-
-#[tauri::command]
-fn get_count(state: tauri::State<Counter>) -> i32 {
-  *state.0.borrow()
+fn counter(state: tauri::State<Counter>) -> i32 {
+  *state.0.write().unwrap() += 1;
+  *state.0.read().unwrap()
 }
 
 fn main() {
   tauri::Builder::default()
-  .manage(Counter(RefCell::new(0)))
-    .invoke_handler(tauri::generate_handler![counter, get_count])
+    .manage(Counter(RwLock::new(0)))
+    .invoke_handler(tauri::generate_handler![counter])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

@@ -1,15 +1,12 @@
 <script lang="ts">
-  import { invoke } from "@tauri-apps/api/tauri";
+  import { invoke } from "@tauri-apps/api/tauri"
 
-  let getCount;
-  const increment = () => {
-    invoke("counter");
-    getCount = invoke("get_count");
-  };
+  let count = 0
+  const increment = async () => count = await invoke("counter")
 </script>
 
 <button on:click={increment}>
-  Clicks: {#await getCount}0{:then count}{count}{/await}
+  Clicks: {count}
 </button>
 
 <style>
