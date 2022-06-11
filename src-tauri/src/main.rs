@@ -20,7 +20,7 @@ async fn test(state: State<'_, ProjectState>) -> Result<Project> {
     Some(project) => Ok(project),
     None => {
       const TOKEN: &str = env!("CF_API");
-      
+
       let client = curseforge::Client::new(DEFAULT_API_BASE, Some(TOKEN.to_string())).unwrap();
       let project = client.project(363581).await.unwrap();
 
@@ -31,10 +31,18 @@ async fn test(state: State<'_, ProjectState>) -> Result<Project> {
   };
 }
 
+#[tauri::command]
+fn open() -> Option<std::path::PathBuf> {
+  native_dialog::FileDialog::new()
+    .show_open_single_dir()
+    .ok()
+    .flatten()
+}
+
 fn main() {
   tauri::Builder::default()
     .manage(ProjectState(RwLock::default()))
-    .invoke_handler(tauri::generate_handler![test])
+    .invoke_handler(tauri::generate_handler![test, open])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

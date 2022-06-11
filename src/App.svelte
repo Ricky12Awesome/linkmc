@@ -1,20 +1,22 @@
 <script lang="ts">
+  import { invoke } from "@tauri-apps/api/tauri"
   import Project from "./lib/Project.svelte"
+
+  const proj = () => invoke("test").then(it => it as Project)
 </script>
 
 <main>
-  <Project />
+  {#await proj() then project}
+    <Project {project} />
+  {/await}
 </main>
 
 <style>
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
+    background-color: black;
+    color: white;
   }
 </style>
