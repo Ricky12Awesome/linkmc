@@ -1,4 +1,4 @@
-export default interface Project {
+export interface Project {
   allowModDistribution: boolean
   authors: Author[]
   categories: Category[]
@@ -122,3 +122,5 @@ export interface Author {
   name: string
   url: string
 }
+
+export default Project

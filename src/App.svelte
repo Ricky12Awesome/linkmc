@@ -1,13 +1,14 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/tauri"
-  import Project from "./lib/Project.svelte"
+  import ProjectComponent from "./lib/Project.svelte"
+  import type Project from "./types/project"
 
-  const proj = () => invoke("test").then(it => it as Project)
+  const proj = () => invoke("test").then((it) => it as Project)
 </script>
 
 <main>
   {#await proj() then project}
-    <Project {project} />
+    <ProjectComponent {project} />
   {/await}
 </main>
 

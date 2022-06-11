@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type Project from "src/models/project"
+  import type Project from "../types/project"
 
-  export let project: Project
+  export let project: Project | undefined
 </script>
 
 <div class="card">
