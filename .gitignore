@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Stores api key for curseforge
+src-tauri/.cargo/config.toml
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

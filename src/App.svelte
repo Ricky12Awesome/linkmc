@@ -1,10 +1,9 @@
 <script lang="ts">
-  import logo from "./assets/svelte.png"
-  import Counter from "./lib/Counter.svelte"
+  import Project from "./lib/Project.svelte"
 </script>
 
 <main>
-  <Counter />
+  <Project />
 </main>
 
 <style>
