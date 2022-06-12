@@ -10,8 +10,8 @@
   <div class="body">
     <p class="title">{project.name}</p>
     <p class="description">{project.summary}</p>
-    <button class="button"> Curseforge </button>
   </div>
+  <img class="logo" src="" alt="" />
 </div>
 
 <style>
@@ -21,13 +21,14 @@
   }
 
   .logo {
-    width: 8em;
-    height: 8em;
+    width: 8rem;
+    height: 8rem;
     margin: 5px;
   }
 
   .body {
     display: flexbox;
+    flex-grow: 1;
   }
 
   .title {
@@ -38,24 +39,5 @@
   .description {
     font-size: 16px;
     margin: 5px 5px;
-  }
-
-  .button {
-    border: none;
-    border-radius: 5px;
-    font-size: 24px;
-    margin: 5px 5px;
-  }
-
-  .button:enabled {
-    background-color: hsl(0, 0%, 90%);
-  }
-
-  .button:hover {
-    background-color: hsl(0, 0%, 75%);
-  }
-
-  .button:active {
-    background-color: hsl(0, 0%, 25%);
   }
 </style>
